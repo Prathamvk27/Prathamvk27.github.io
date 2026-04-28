@@ -4,8 +4,6 @@ export const Home = () => {
     return (
 
         <main>
-            <SidebarDemo />
-
         </main>
     );
 }

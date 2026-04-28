@@ -31,6 +31,12 @@ export function SidebarDemo() {
       page: "timeline",
     },
     {
+      label: "Projects Showcase",
+      href: "#",
+      icon: <LogOut className="text-neutral-200 h-5 w-5 flex-shrink-0" />,
+      page: "logout",
+    },
+    {
       label: "Logout",
       href: "#",
       icon: <LogOut className="text-neutral-200 h-5 w-5 flex-shrink-0" />,
