@@ -2,8 +2,8 @@
 import { SidebarDemo } from "../components/sidebardemo";
 export const Home = () => {
     return (
-
         <main>
+            <SidebarDemo />
         </main>
     );
 }

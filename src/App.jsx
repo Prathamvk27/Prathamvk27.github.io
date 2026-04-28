@@ -1,7 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom"
-import { Home } from "./pages/home"
-import { NotFound } from "./pages/notfound"
-import { ProjectsSection } from "./components/projectsection"
+import { Home } from "./pages/Home.jsx"
+import { NotFound } from "./pages/NotFound.jsx"
 //import { LaunchingSoon } from "./pages/LaunchingSoon"
 
 function App() {
