@@ -1,17 +1,17 @@
+//import { SidebarDemo } from "./components/sidebardemo"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
-import { Home } from "./pages/Home.jsx"
+import { Home } from "./pages/home.jsx"
 import { NotFound } from "./pages/NotFound.jsx"
-//import { LaunchingSoon } from "./pages/LaunchingSoon"
 
 function App() {
   return (
     <>
-    <BrowserRouter> 
-    <Routes>
-      <Route path = '/' element={<Home />}/>
-      <Route path = "*" element = {<NotFound />} />
-    </Routes>
-    </BrowserRouter>
+      <BrowserRouter> 
+     <Routes>
+       <Route path = '/' element={<Home />}/>
+       <Route path = "*" element = {<NotFound />} />
+      </Routes>
+      </BrowserRouter>
     </>
   )
 }

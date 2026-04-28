@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Github, Mail, Linkedin, MapPin, GraduationCap, Briefcase, ExternalLink } from "lucide-react";
-import myphoto from "../assets/IMG_1736.JPG";
+import myphoto1 from "../assets/IMG_1735.jpeg";
+
 // ── Animation helpers ──────────────────────────────────────────────────────────
 const fadeUp = (delay = 0) => ({
   initial: { opacity: 0, y: 24 },
@@ -91,7 +92,7 @@ export function Dashboard() {
           <Card className="h-full min-h-[340px] relative group">
             {/* Photo fills the card */}
             <img
-              src={myphoto}
+              src={myphoto1}
               alt="Pratham VK"
               className="w-full h-full object-cover object-top absolute inset-0"
             />
