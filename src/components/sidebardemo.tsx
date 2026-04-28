@@ -20,7 +20,7 @@ export function SidebarDemo() {
     },
     {
       label: "Projects",
-      href: "/projects",
+      href: "#",
       icon: <UserCog className="text-neutral-200 h-5 w-5 flex-shrink-0" />,
       page: "projects",
     },

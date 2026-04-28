@@ -10,8 +10,6 @@ function App() {
     <BrowserRouter> 
     <Routes>
       <Route path = '/' element={<Home />}/>
-      <Route path = '/projects' element = {<ProjectsSection/>}/>
-
       <Route path = "*" element = {<NotFound />} />
     </Routes>
     </BrowserRouter>
