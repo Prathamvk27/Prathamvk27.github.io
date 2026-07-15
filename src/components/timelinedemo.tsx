@@ -10,8 +10,6 @@ import {
   SiReact, SiTailwindcss, SiRust, SiGit,
 } from "react-icons/si";
 
-
-// Icons 
 const JavaIcon = () => (
   <img
     src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg"
@@ -36,90 +34,51 @@ const AzureIcon = () => (
   />
 );
 
-//
-
-
-// Then use it as:
-
-// ─── Shared Components ────────────────────────────────────────────────────────
-
-// Icon + name below — consistent for both "Technologies Learned" and "Tech Stack"
 const TechBadge = ({ icon, label }: { icon: React.ReactNode; label: string }) => (
   <div className="flex flex-col items-center gap-1.5 group/badge cursor-default">
-    <div className="text-3xl text-neutral-300 group-hover/badge:text-white transition duration-200">
-      {icon}
-    </div>
-    <span className="text-xs text-neutral-500 group-hover/badge:text-neutral-300 transition duration-200 whitespace-nowrap">
-      {label}
-    </span>
+    <div className="text-3xl text-white/55 group-hover/badge:text-white transition duration-200">{icon}</div>
+    <span className="text-xs text-white/45 group-hover/badge:text-white/65 transition duration-200 whitespace-nowrap">{label}</span>
   </div>
 );
 
-// Section label like "TECH STACK" or "TECHNOLOGIES LEARNED"
 const SectionLabel = ({ text }: { text: string }) => (
-  <p className="text-neutral-500 text-xs uppercase tracking-widest mb-4 font-medium">
-    {text}
-  </p>
+  <p className="text-white/45 text-xs uppercase tracking-widest mb-4 font-medium">{text}</p>
 );
 
-// Course/tag pill
 const CourseTag = ({ name }: { name: string }) => (
-  <span className="px-3 py-1 rounded-full text-xs bg-neutral-800 text-neutral-300 border border-neutral-700 hover:border-neutral-500 hover:text-white transition duration-200 cursor-default">
-    {name}
-  </span>
+  <span className="px-3 py-1 rounded-full text-xs bg-white/5 text-white/55 border border-white/10 hover:border-white/25 hover:text-white transition duration-200 cursor-default">{name}</span>
 );
 
-// Bullet point with arrow
 const Bullet = ({ text }: { text: string }) => (
-  <li className="text-neutral-400 text-sm leading-relaxed list-none flex gap-2">
-    <span className="text-blue-500 mt-0.5 flex-shrink-0">▸</span>
+  <li className="text-white/55 text-sm leading-relaxed list-none flex gap-2">
+    <span className="text-school-bus-yellow mt-0.5 flex-shrink-0">▸</span>
     <span>{text}</span>
   </li>
 );
 
-// Card wrapper — each distinct event gets its own card with a colored left border
-const EventCard = ({
-  children,
-  accent = "blue",
-}: {
-  children: React.ReactNode;
-  accent?: "blue" | "purple" | "emerald" | "amber";
-}) => {
+const EventCard = ({ children, accent = "primary" }: { children: React.ReactNode; accent?: "primary" | "secondary" }) => {
   const borderColors: Record<string, string> = {
-    blue:    "border-l-blue-500",
-    purple:  "border-l-purple-500",
-    emerald: "border-l-emerald-500",
-    amber:   "border-l-amber-500",
+    primary: "border-l-school-bus-yellow",
+    secondary: "border-l-gold",
   };
   return (
-    <div
-      className={`flex flex-col gap-5 bg-neutral-800/40 border border-neutral-700/50 border-l-2 ${borderColors[accent]} rounded-xl p-5`}
-    >
+    <div className={`flex flex-col gap-5 bg-white/[0.03] border border-white/8 border-l-2 ${borderColors[accent]} rounded-lg p-5`}>
       {children}
     </div>
   );
 };
 
-// ─── Timeline ─────────────────────────────────────────────────────────────────
-
 export function TimelineDemo() {
   const data = [
-    // ── 2018 ──────────────────────────────────────────────────────────────────
     {
       title: "2018",
       content: (
         <div className="flex flex-col gap-5">
-          <EventCard accent="blue">
+          <EventCard accent="primary">
             <div>
-              <p className="text-white font-bold text-lg mb-0.5">
-                Vemana Institute of Technology
-              </p>
-              <p className="text-blue-400 text-sm font-medium">
-                B.E. in Information and Computer Science
-              </p>
-              <p className="text-neutral-500 text-xs mt-1">
-                July 2018 – June 2022 · VTU Affiliated · Bangalore, India
-              </p>
+              <p className="text-white font-semibold text-lg mb-0.5">Vemana Institute of Technology</p>
+              <p className="text-school-bus-yellow text-sm font-medium">B.E. in Information and Computer Science</p>
+              <p className="text-white/45 text-xs mt-1">July 2018 – June 2022 · VTU Affiliated · Bangalore, India</p>
             </div>
 
             <div className="grid grid-cols-2 gap-3">
@@ -133,7 +92,7 @@ export function TimelineDemo() {
                 <TechBadge icon={<SiPython />} label="Python" />
                 <TechBadge icon={<JavaIcon />} label="Java" />
                 <TechBadge icon={<SiMysql />} label="MySQL" />
-                <TechBadge icon={<AWSIcon/>} label="AWS" />
+                <TechBadge icon={<AWSIcon />} label="AWS" />
                 <TechBadge icon={<SiHtml5 />} label="HTML" />
                 <TechBadge icon={<SiJavascript />} label="JavaScript" />
               </div>
@@ -156,20 +115,15 @@ export function TimelineDemo() {
       ),
     },
 
-    // ── 2021 ──────────────────────────────────────────────────────────────────
     {
       title: "2021",
       content: (
         <div className="flex flex-col gap-5">
-          <EventCard accent="purple">
+          <EventCard accent="primary">
             <div>
-              <p className="text-white font-bold text-lg mb-0.5">
-                Machine Learning Intern
-              </p>
-              <p className="text-purple-400 text-sm font-medium">1stop.ai</p>
-              <p className="text-neutral-500 text-xs mt-1">
-                Aug 2021 – Oct 2021 · India
-              </p>
+              <p className="text-white font-semibold text-lg mb-0.5">Machine Learning Intern</p>
+              <p className="text-school-bus-yellow text-sm font-medium">1stop.ai</p>
+              <p className="text-white/45 text-xs mt-1">Aug 2021 – Oct 2021 · India</p>
             </div>
 
             <ul className="flex flex-col gap-2.5">
@@ -184,7 +138,7 @@ export function TimelineDemo() {
                 <TechBadge icon={<SiPytorch />} label="PyTorch" />
                 <TechBadge icon={<SiPython />} label="Python" />
                 <TechBadge icon={<SiTensorflow />} label="TensorFlow" />
-                <TechBadge icon={<AzureIcon/>} label="Azure"/>
+                <TechBadge icon={<AzureIcon />} label="Azure" />
               </div>
             </div>
           </EventCard>
@@ -192,22 +146,15 @@ export function TimelineDemo() {
       ),
     },
 
-    // ── 2022 ──────────────────────────────────────────────────────────────────
     {
       title: "2022",
       content: (
         <div className="flex flex-col gap-5">
-          <EventCard accent="emerald">
+          <EventCard accent="secondary">
             <div>
-              <p className="text-white font-bold text-lg mb-0.5">
-                Graduated 🎓
-              </p>
-              <p className="text-emerald-400 text-sm font-medium">
-                Vemana Institute of Technology
-              </p>
-              <p className="text-neutral-500 text-xs mt-1">
-                B.E. in Information and Computer Science · June 2022
-              </p>
+              <p className="text-white font-semibold text-lg mb-0.5">Graduated 🎓</p>
+              <p className="text-gold text-sm font-medium">Vemana Institute of Technology</p>
+              <p className="text-white/45 text-xs mt-1">B.E. in Information and Computer Science · June 2022</p>
             </div>
             <div className="flex flex-wrap gap-2">
               <CourseTag name="Final Year Project" />
@@ -219,31 +166,18 @@ export function TimelineDemo() {
       ),
     },
 
-    // ── 2023 ──────────────────────────────────────────────────────────────────
     {
       title: "2023",
       content: (
         <div className="flex flex-col gap-5">
-
-          {/* Ness — blue card */}
-          <EventCard accent="blue">
+          <EventCard accent="primary">
             <div>
-              <p className="text-white font-bold text-lg mb-0.5">
-                Software Engineer
-              </p>
-              <p className="text-blue-400 text-sm font-medium">
-                Ness Digital Engineering
-              </p>
-              <p className="text-neutral-500 text-xs mt-1">
-                Full-time · Feb 2023 – Aug 2023 · India
-              </p>
+              <p className="text-white font-semibold text-lg mb-0.5">Software Engineer</p>
+              <p className="text-school-bus-yellow text-sm font-medium">Ness Digital Engineering</p>
+              <p className="text-white/45 text-xs mt-1">Full-time · Feb 2023 – Aug 2023 · India</p>
             </div>
 
-            <img
-              src={img3}
-              alt="Ness Digital Engineering"
-              className="rounded-lg object-cover h-40 w-full"
-            />
+            <img src={img3} alt="Ness Digital Engineering" className="rounded-lg object-cover h-40 w-full" />
 
             <ul className="flex flex-col gap-2.5">
               <Bullet text="Built backend services with Spring Boot — REST APIs secured with Spring Security and OAuth2, documented with Swagger, deployed via Docker on Kubernetes." />
@@ -262,18 +196,11 @@ export function TimelineDemo() {
             </div>
           </EventCard>
 
-          {/* ASU — amber card, clearly separate from Ness */}
-          <EventCard accent="amber">
+          <EventCard accent="secondary">
             <div>
-              <p className="text-white font-bold text-lg mb-0.5">
-                MS in Systems Engineering 🌵
-              </p>
-              <p className="text-amber-400 text-sm font-medium">
-                Arizona State University
-              </p>
-              <p className="text-neutral-500 text-xs mt-1">
-                Robotics and Autonomous Systems · Aug 2023 – May 2025 · Tempe, Arizona, USA
-              </p>
+              <p className="text-white font-semibold text-lg mb-0.5">MS in Systems Engineering 🌵</p>
+              <p className="text-gold text-sm font-medium">Arizona State University</p>
+              <p className="text-white/45 text-xs mt-1">Robotics and Autonomous Systems · Aug 2023 – May 2025 · Tempe, Arizona, USA</p>
             </div>
             <div className="flex flex-wrap gap-2">
               <CourseTag name="Robotics" />
@@ -282,27 +209,19 @@ export function TimelineDemo() {
               <CourseTag name="Computer Vision" />
             </div>
           </EventCard>
-
         </div>
       ),
     },
 
-    // ── 2025 ──────────────────────────────────────────────────────────────────
     {
       title: "2025",
       content: (
         <div className="flex flex-col gap-5">
-          <EventCard accent="emerald">
+          <EventCard accent="secondary">
             <div>
-              <p className="text-white font-bold text-lg mb-0.5">
-                MS Graduate 🎓
-              </p>
-              <p className="text-emerald-400 text-sm font-medium">
-                Arizona State University
-              </p>
-              <p className="text-neutral-500 text-xs mt-1">
-                Systems Engineering — Robotics and Autonomous Systems · May 2025
-              </p>
+              <p className="text-white font-semibold text-lg mb-0.5">MS Graduate 🎓</p>
+              <p className="text-gold text-sm font-medium">Arizona State University</p>
+              <p className="text-white/45 text-xs mt-1">Systems Engineering — Robotics and Autonomous Systems · May 2025</p>
             </div>
 
             <ul className="flex flex-col gap-2.5">
