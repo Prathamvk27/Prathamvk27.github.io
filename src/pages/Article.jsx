@@ -11,7 +11,10 @@ export function Article({ note }) {
         <article>
           <h1>{note.title}</h1>
           <p className="entry-deck">{note.introduction}</p>
-          <p className="article-context">{note.role} · {note.company}<br />{note.date} · {note.location}</p>
+          <div className="article-context">
+            <p>{note.role} · {note.company}</p>
+            <p>Work period: {note.date} · {note.location}</p>
+          </div>
           <div className="entry-copy">
             {note.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
           </div>

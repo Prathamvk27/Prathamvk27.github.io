@@ -13,7 +13,7 @@ export const Home = () => (
         <a href={profile.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>
       </div>
     </header>
-    <main>
+    <main id="main-content">
       <section className="journal" aria-labelledby="journal-title">
         <h2 id="journal-title">Notes from work</h2>
         <div className="entry-list">
@@ -28,14 +28,20 @@ export const Home = () => (
       <section className="reference-section" aria-labelledby="background-title">
         <h2 id="background-title">A little background</h2>
         <p>My work spans backend development, AI inference, and cloud infrastructure.</p>
-        <dl className="toolkit-list">
+        <details className="toolkit">
+          <summary>Tools I use</summary>
+          <dl className="toolkit-list">
           {skillGroups.map((group) => (
             <div key={group.label}><dt>{group.label}</dt><dd>{group.items}</dd></div>
           ))}
-        </dl>
+          </dl>
+        </details>
         <div className="education-list">
           {education.map((item) => (
-            <p key={item.degree}>{item.degree} · {item.school}{item.date ? ` · ${item.date}` : ""}</p>
+            <p key={item.degree}>
+              <span className="education-degree">{item.degree}</span>
+              <span>{item.school}{item.date ? ` · ${item.date}` : ""}</span>
+            </p>
           ))}
         </div>
       </section>
