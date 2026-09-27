@@ -70,6 +70,11 @@ a:focus-visible {
   padding: clamp(4rem, 10vw, 8rem) 0 clamp(6rem, 14vw, 10rem);
 }
 
+.author-name {
+  margin: 0 0 3rem;
+  color: var(--purple-soft);
+}
+
 .journal-footer p {
   margin: 0;
 }

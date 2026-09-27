@@ -4,6 +4,7 @@ export const Home = () => {
   return (
     <div className="journal-shell">
       <header className="masthead">
+        <p className="author-name">{profile.name}</p>
         <h1>Notes on building AI systems that hold up in the real world.</h1>
         <p className="masthead__introduction">{profile.summary}</p>
 
