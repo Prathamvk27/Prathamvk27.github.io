@@ -4,11 +4,6 @@ export const Home = () => {
   return (
     <div className="journal-shell">
       <header className="masthead">
-        <div className="masthead__meta">
-          <p>{profile.shortName} / {profile.role}</p>
-          <p>{profile.location}</p>
-        </div>
-
         <h1>Notes on building AI systems that hold up in the real world.</h1>
         <p className="masthead__introduction">{profile.summary}</p>
 
