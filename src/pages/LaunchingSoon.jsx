@@ -1,12 +1,11 @@
-// In src/pages/LaunchingSoon.jsx
-import { TodoCard } from "../components/todocard";
-
-
 export function LaunchingSoon() {
   return (
-    // Added a dark background to make the card stand out
-    <main>
-      <TimelineDemo />
+    <main className="site-shell">
+      <section className="section contact" aria-labelledby="launching-title">
+        <p className="section-kicker">Coming soon</p>
+        <h1 id="launching-title" className="section-heading">Something is taking shape.</h1>
+        <a className="text-link" href="/" style={{ marginTop: "2rem" }}>Back home ↗</a>
+      </section>
     </main>
-  );
+  )
 }
