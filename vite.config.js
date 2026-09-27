@@ -23,13 +23,28 @@ function prerenderPlugin() {
         appType: 'custom',
       })
       try {
-        const { render } = await vite.ssrLoadModule('/src/entry-server.jsx')
-        const appHtml = render()
+        const { render, pages } = await vite.ssrLoadModule('/src/entry-server.jsx')
         const htmlPath = path.resolve(__dirname, 'dist', 'index.html')
-        let html = fs.readFileSync(htmlPath, 'utf-8')
-        html = html.replace('<div id="root"></div>', `<div id="root">${appHtml}</div>`)
-        fs.writeFileSync(htmlPath, html)
-        console.log('[prerender] Static content injected into dist/index.html')
+        const template = fs.readFileSync(htmlPath, 'utf-8')
+        const escapeHtml = (text) => text.replaceAll('&', '&amp;').replaceAll('"', '&quot;').replaceAll('<', '&lt;').replaceAll('>', '&gt;')
+        for (const page of [{ path: '/' }, ...pages, { path: '/404.html', title: 'Page not found' }]) {
+          let html = template.replace('<div id="root"></div>', () => `<div id="root">${render(page.path)}</div>`)
+          if (page.title) {
+            const title = escapeHtml(`${page.title} — Pratham Babu`)
+            html = html.replace(/<title>.*?<\/title>/, () => `<title>${title}</title>`)
+            html = html.replace(/(<meta (?:property="og:title"|name="twitter:title") content=")[^"]*"/g, (_, prefix) => `${prefix}${title}"`)
+          }
+          if (page.description) {
+            html = html.replace(/(<meta (?:name="description"|property="og:description"|name="twitter:description") content=")[^"]*"/g, (_, prefix) => `${prefix}${escapeHtml(page.description)}"`)
+          }
+          html = html.replace(/(<meta property="og:url" content=")[^"]*"/, (_, prefix) => `${prefix}https://prathamvk27.github.io${page.path}"`)
+          const output = page.path === '/404.html'
+            ? path.resolve(__dirname, 'dist', '404.html')
+            : path.resolve(__dirname, 'dist', '.' + page.path, 'index.html')
+          fs.mkdirSync(path.dirname(output), { recursive: true })
+          fs.writeFileSync(output, html)
+        }
+        console.log('[prerender] Generated homepage, article pages, and 404 page')
       } finally {
         await vite.close()
       }
@@ -54,4 +69,3 @@ export default defineConfig({
     }
   }
 })
-

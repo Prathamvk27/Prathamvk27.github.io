@@ -1,99 +1,47 @@
 import { education, profile, skillGroups, workNotes } from "../data/profileData"
 
-export const Home = () => {
-  return (
-    <div className="journal-shell">
-      <header className="masthead">
-        <p className="author-name">{profile.name}</p>
-        <h1>Notes on building AI systems that hold up in the real world.</h1>
-        <p className="masthead__introduction">{profile.summary}</p>
-
-        <div className="masthead__links" aria-label="Contact links">
-          <a href={`mailto:${profile.email}`}>{profile.email}</a>
-          <a href={profile.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+export const Home = () => (
+  <div className="journal-shell">
+    <header className="masthead">
+      <h1 className="author-name">{profile.name}</h1>
+      <p className="masthead__introduction">
+        I build and deploy AI services, from tools people use to the infrastructure behind them.
+        These are notes from my work with APIs, model inference, and reliable releases.
+      </p>
+      <div className="masthead__links">
+        <a href={`mailto:${profile.email}`}>Email</a>
+        <a href={profile.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      </div>
+    </header>
+    <main>
+      <section className="journal" aria-labelledby="journal-title">
+        <h2 id="journal-title">Notes from work</h2>
+        <div className="entry-list">
+          {workNotes.map((note) => (
+            <article className="journal-entry" key={note.slug}>
+              <h3><a href={`/blog/${note.slug}/`}>{note.title}</a></h3>
+              <p className="entry-deck">{note.introduction}</p>
+            </article>
+          ))}
         </div>
-      </header>
-
-      <main>
-        <section className="journal" aria-labelledby="journal-title">
-          <header className="section-title">
-            <p className="section-label">Work journal</p>
-            <h2 id="journal-title">From the field</h2>
-            <p>
-              A chronological record of the systems I have built, the constraints behind them,
-              and the production details that made them useful.
-            </p>
-          </header>
-
-          <div className="entry-list">
-            {workNotes.map((note, index) => (
-              <article className="journal-entry" key={note.company}>
-                <div className="journal-entry__index" aria-hidden="true">
-                  {String(index + 1).padStart(2, "0")}
-                </div>
-
-                <div className="journal-entry__body">
-                  <p className="entry-meta">
-                    <time>{note.date}</time>
-                    <span>{note.role}, {note.company}</span>
-                    <span>{note.location}</span>
-                  </p>
-
-                  <h3>{note.title}</h3>
-                  <p className="entry-deck">{note.introduction}</p>
-
-                  <div className="entry-copy">
-                    {note.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
-                  </div>
-
-                  <p className="entry-topics"><span>Topics</span> {note.topics}</p>
-                </div>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section className="reference-section" aria-labelledby="toolkit-title">
-          <header className="section-title section-title--compact">
-            <p className="section-label">Reference</p>
-            <h2 id="toolkit-title">Working toolkit</h2>
-          </header>
-
-          <dl className="toolkit-list">
-            {skillGroups.map((group) => (
-              <div key={group.label}>
-                <dt>{group.label}</dt>
-                <dd>{group.items}</dd>
-              </div>
-            ))}
-          </dl>
-        </section>
-
-        <section className="reference-section" aria-labelledby="education-title">
-          <header className="section-title section-title--compact">
-            <p className="section-label">Background</p>
-            <h2 id="education-title">Education</h2>
-          </header>
-
-          <div className="education-list">
-            {education.map((item) => (
-              <article key={item.degree}>
-                <h3>{item.degree}</h3>
-                <p>{item.school}{item.date ? ` / ${item.date}` : ""}</p>
-              </article>
-            ))}
-          </div>
-        </section>
-      </main>
-
-      <footer className="journal-footer">
-        <p>Pratham Vanangadu Keshava Babu</p>
-        <p>AI engineering, infrastructure, and delivery.</p>
-        <div>
-          <a href={`mailto:${profile.email}`}>Email</a>
-          <a href={profile.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      </section>
+      <section className="reference-section" aria-labelledby="background-title">
+        <h2 id="background-title">A little background</h2>
+        <p>My work spans backend development, AI inference, and cloud infrastructure.</p>
+        <dl className="toolkit-list">
+          {skillGroups.map((group) => (
+            <div key={group.label}><dt>{group.label}</dt><dd>{group.items}</dd></div>
+          ))}
+        </dl>
+        <div className="education-list">
+          {education.map((item) => (
+            <p key={item.degree}>{item.degree} · {item.school}{item.date ? ` · ${item.date}` : ""}</p>
+          ))}
         </div>
-      </footer>
-    </div>
-  )
-}
+      </section>
+    </main>
+    <footer className="journal-footer">
+      <a href={`mailto:${profile.email}`}>Say hello</a>
+    </footer>
+  </div>
+)

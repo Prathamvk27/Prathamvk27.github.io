@@ -13,28 +13,30 @@ export const profile = {
 
 export const workNotes = [
   {
+    slug: "ai-reporting-workflows",
     date: "August 2026 - Present",
     company: "Automation Interns",
     location: "Arizona",
     role: "Forward Deployed Engineer",
-    title: "Putting an AI reporting workflow in the hands of real-estate teams",
+    title: "AI reporting for real-estate teams",
     introduction:
-      "A practical account of connecting customer data, client preferences, and a hosted language model into one reporting workflow.",
+      "Connecting customer data and an LLM to make client reporting faster.",
     paragraphs: [
-      "I built an AI reporting application that combines Salesforce property data with client preferences. The workflow cut report preparation time by 20-40% and helped the agency owner report that 40% more client calls were handled after adoption.",
+      "I built an AI reporting application that combines Salesforce property data with client preferences. The workflow cut report preparation time by 20-40%. The agency owner reported handling 40% more client calls after adoption.",
       "The application connects Salesforce to a hosted LLM through FastAPI, with report validation, timeouts, and retries so generated drafts remain useful during live client meetings. Before the records enter the reporting flow, Pipedrive contacts are cleaned, deduplicated, and validated to avoid merging distinct clients.",
       "The service runs on AWS EC2 with Docker and CloudWatch monitoring. Health checks and a rehearsed rollback path keep recovery under ten minutes.",
     ],
     topics: "Salesforce, FastAPI, hosted LLMs, AWS EC2, Docker, CloudWatch",
   },
   {
+    slug: "shared-model-inference",
     date: "August 2025 - July 2026",
     company: "Internpro.ai",
     location: "Arizona",
     role: "Engineering Volunteer, AI Infrastructure",
-    title: "Making shared model inference easier to ship and safer to change",
+    title: "Bringing new models online",
     introduction:
-      "Notes from turning model serving into shared infrastructure that teams could adopt without rebuilding the same deployment path.",
+      "Shared inference services, background workers, and release checks at Internpro.ai.",
     paragraphs: [
       "I built a shared FastAPI and vLLM service that reduced the time needed to bring new models online from one or two days to a few hours.",
       "Long-running document processing moved to Celery and Redis workers, with results in S3 and job state in PostgreSQL. Retry behavior was designed to avoid duplicate outputs. GPU-backed inference services ran on Kubernetes with readiness checks and rolling updates, while Prometheus tracked latency, queue backlog, and errors.",
@@ -43,13 +45,14 @@ export const workNotes = [
     topics: "FastAPI, vLLM, Celery, Redis, PostgreSQL, S3, Kubernetes, Prometheus, MLflow",
   },
   {
+    slug: "reliable-backend-delivery",
     date: "February 2023 - August 2023",
     company: "Ness Digital Engineering",
     location: "Karnataka, India",
     role: "Software Engineer",
-    title: "Building the production habits that reliable AI systems depend on",
+    title: "Reliable backends, from tests to releases",
     introduction:
-      "Backend delivery work across APIs, data stores, test coverage, caching, backups, and controlled releases.",
+      "What went into API testing, caching, backups, and delivery at Ness.",
     paragraphs: [
       "I built Django APIs and PostgreSQL services for financial workflows, increasing Pytest unit and end-to-end coverage from 45% to 90%.",
       "Frequently used reference data was cached in Redis with expiry and post-update invalidation, reaching a 70% cache hit rate during load tests and reducing database reads.",
