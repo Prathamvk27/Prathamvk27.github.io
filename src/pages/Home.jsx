@@ -6,46 +6,61 @@ export const Home = () => (
       <h1 className="author-name">{profile.name}</h1>
       <p className="masthead__introduction">
         I build and deploy AI services, from tools people use to the infrastructure behind them.
-        These are notes from my work with APIs, model inference, and reliable releases.
+        I write about APIs, model inference, and reliable releases.
       </p>
       <div className="masthead__links">
         <a href={`mailto:${profile.email}`}>Email</a>
         <a href={profile.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>
       </div>
     </header>
+
     <main id="main-content">
-      <section className="journal" aria-labelledby="journal-title">
-        <h2 id="journal-title">Notes from work</h2>
-        <div className="entry-list">
-          {workNotes.map((note) => (
-            <article className="journal-entry" key={note.slug}>
-              <h3><a href={`/blog/${note.slug}/`}>{note.title}</a></h3>
-              <p className="entry-deck">{note.introduction}</p>
+      <section className="profile-section" aria-labelledby="experience-title">
+        <h2 id="experience-title">Work experience</h2>
+        <div className="experience-list">
+          {workNotes.map((item) => (
+            <article key={item.company}>
+              <h3>{item.role}</h3>
+              <p>{item.company} · {item.date}</p>
             </article>
           ))}
         </div>
       </section>
-      <section className="reference-section" aria-labelledby="background-title">
-        <h2 id="background-title">A little background</h2>
-        <p>My work spans backend development, AI inference, and cloud infrastructure.</p>
-        <details className="toolkit">
-          <summary>Tools I use</summary>
-          <dl className="toolkit-list">
-          {skillGroups.map((group) => (
-            <div key={group.label}><dt>{group.label}</dt><dd>{group.items}</dd></div>
-          ))}
-          </dl>
-        </details>
+
+      <section className="profile-section" aria-labelledby="education-title">
+        <h2 id="education-title">Education</h2>
         <div className="education-list">
           {education.map((item) => (
-            <p key={item.degree}>
-              <span className="education-degree">{item.degree}</span>
-              <span>{item.school}{item.date ? ` · ${item.date}` : ""}</span>
-            </p>
+            <article key={item.degree}>
+              <h3>{item.degree}</h3>
+              <p>{item.school}{item.date ? ` · ${item.date}` : ""}</p>
+            </article>
           ))}
         </div>
       </section>
+
+      <section className="journal" aria-labelledby="blog-title">
+        <h2 id="blog-title">Blog</h2>
+        <div className="entry-list">
+          {workNotes.map((post) => (
+            <article className="journal-entry" key={post.slug}>
+              <h3><a href={`/blog/${post.slug}/`}>{post.title}</a></h3>
+              <p className="entry-deck">{post.introduction}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <details className="toolkit">
+        <summary>Tools I use</summary>
+        <dl className="toolkit-list">
+          {skillGroups.map((group) => (
+            <div key={group.label}><dt>{group.label}</dt><dd>{group.items}</dd></div>
+          ))}
+        </dl>
+      </details>
     </main>
+
     <footer className="journal-footer">
       <a href={`mailto:${profile.email}`}>Say hello</a>
     </footer>

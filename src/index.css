@@ -57,15 +57,24 @@ a:focus-visible, summary:focus-visible {
   min-height: 2.45rem;
   align-items: center;
 }
+.profile-section,
 .journal { padding-bottom: 3.25rem; }
+.profile-section > h2,
+.journal > h2 { font-weight: 600; }
+.experience-list,
+.education-list { margin-top: 1.5rem; }
+.experience-list article + article,
+.education-list article + article { margin-top: 1.4rem; }
+.experience-list h3,
+.education-list h3 { font-weight: 500; }
+.experience-list p,
+.education-list p { margin: 0.2rem 0 0; }
 .entry-list { margin-top: 1.5rem; }
 .journal-entry + .journal-entry { margin-top: 1.75rem; }
 .journal-entry h3 { line-height: 1.6; }
 .journal-entry h3 a { padding-block: 0.2rem; }
 .entry-deck { margin: 0.5rem 0 0; }
-.reference-section { padding-bottom: 2rem; }
-.reference-section > p { margin: 1rem 0; }
-.toolkit { margin: 1.25rem 0 2rem; }
+.toolkit { margin: 0 0 2.5rem; }
 .toolkit summary {
   width: fit-content;
   cursor: pointer;
@@ -79,9 +88,6 @@ a:focus-visible, summary:focus-visible {
 .toolkit-list { margin: 1rem 0 0; }
 .toolkit-list > div + div { margin-top: 1.25rem; }
 .toolkit-list dd { margin: 0.25rem 0 0; }
-.education-list p { margin: 0 0 1.25rem; }
-.education-list span { display: block; }
-.education-degree { font-weight: 500; }
 .journal-footer {
   padding: 0 0 3rem;
   display: flex;
