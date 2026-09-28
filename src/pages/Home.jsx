@@ -1,4 +1,4 @@
-import { education, profile, skillGroups, workNotes } from "../data/profileData"
+import { education, profile, skillGroups, workExperience } from "../data/profileData"
 
 export const Home = () => (
   <div className="journal-shell">
@@ -24,7 +24,7 @@ export const Home = () => (
       <section id="experience" className="profile-section" aria-labelledby="experience-title">
         <h2 id="experience-title">Work experience</h2>
         <div className="experience-list">
-          {workNotes.map((item) => (
+          {workExperience.map((item) => (
             <article key={item.company}>
               <h3>{item.role}</h3>
               <p>

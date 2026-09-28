@@ -1,6 +1,10 @@
+import Markdown from "react-markdown"
+import { formatPublishedDate } from "../content/posts"
 import { profile } from "../data/profileData"
 
-export function Article({ note }) {
+export function Article({ post }) {
+  const hasWorkContext = post.role || post.company || post.workPeriod || post.location
+
   return (
     <div className="journal-shell">
       <header className="article-header">
@@ -9,17 +13,24 @@ export function Article({ note }) {
       </header>
       <main className="article-page">
         <article>
-          <h1>{note.title}</h1>
-          <p className="entry-deck">{note.introduction}</p>
-          <div className="article-context">
-            <p>{note.role} · {note.company}</p>
-            {note.platform && <p>Platform: {note.platform}</p>}
-            <p>Work period: {note.date} · {note.location}</p>
-          </div>
+          <h1>{post.title}</h1>
+          <p className="entry-deck">{post.description}</p>
+          <p className="article-date">
+            <time dateTime={post.published}>{formatPublishedDate(post.published)}</time>
+          </p>
+          {hasWorkContext && (
+            <div className="article-context">
+              {(post.role || post.company) && <p>{[post.role, post.company].filter(Boolean).join(" · ")}</p>}
+              {post.platform && <p>Platform: {post.platform}</p>}
+              {(post.workPeriod || post.location) && <p>{[post.workPeriod, post.location].filter(Boolean).join(" · ")}</p>}
+            </div>
+          )}
           <div className="entry-copy">
-            {note.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+            <Markdown>{post.body}</Markdown>
           </div>
-          <p className="entry-topics"><span>Topics</span> {note.topics}</p>
+          {post.topics.length > 0 && (
+            <p className="entry-topics"><span>Topics</span> {post.topics.join(", ")}</p>
+          )}
         </article>
       </main>
       <footer className="journal-footer">
