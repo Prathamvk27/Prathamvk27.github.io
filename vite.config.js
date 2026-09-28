@@ -44,7 +44,7 @@ function prerenderPlugin() {
           fs.mkdirSync(path.dirname(output), { recursive: true })
           fs.writeFileSync(output, html)
         }
-        console.log('[prerender] Generated homepage, article pages, and 404 page')
+        console.log('[prerender] Generated homepage, blog archive, article pages, and 404 page')
       } finally {
         await vite.close()
       }

@@ -110,6 +110,10 @@ a:focus-visible, summary:focus-visible {
 .article-header { padding: clamp(2.5rem, 8vw, 5rem) 0 2.5rem; }
 .article-header .author-name { margin-bottom: 0.75rem; }
 .article-page { padding-bottom: 2rem; }
+.blog-index { padding-bottom: 3.25rem; }
+.blog-index__header { margin-bottom: 1.5rem; }
+.blog-index__header h1 { font-weight: 600; }
+.blog-index__header p { margin: 0.75rem 0 0; }
 .article-page h1 {
   font-size: clamp(1.3rem, 4vw, 1.6rem);
   font-weight: 600;

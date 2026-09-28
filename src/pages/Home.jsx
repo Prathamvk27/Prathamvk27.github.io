@@ -9,6 +9,7 @@ export const Home = () => (
         I write about APIs, model inference, and reliable releases.
       </p>
       <div className="masthead__links">
+        <a href="/blog/">Blog</a>
         <a href={`mailto:${profile.email}`}>Email</a>
         <a href={profile.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>
       </div>
@@ -16,7 +17,6 @@ export const Home = () => (
         <span>Index</span>
         <a href="#experience">Experience</a>
         <a href="#education">Education</a>
-        <a href="#blog">Blog</a>
         <a href="#tools">Tools</a>
       </nav>
     </header>
@@ -45,18 +45,6 @@ export const Home = () => (
             <article key={item.degree}>
               <h3>{item.degree}</h3>
               <p>{item.school}{item.date ? ` · ${item.date}` : ""}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section id="blog" className="journal" aria-labelledby="blog-title">
-        <h2 id="blog-title">Blog</h2>
-        <div className="entry-list">
-          {workNotes.map((post) => (
-            <article className="journal-entry" key={post.slug}>
-              <h3><a href={`/blog/${post.slug}/`}>{post.title}</a></h3>
-              <p className="entry-deck">{post.introduction}</p>
             </article>
           ))}
         </div>

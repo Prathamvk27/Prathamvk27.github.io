@@ -5,7 +5,7 @@ export function Article({ note }) {
     <div className="journal-shell">
       <header className="article-header">
         <p className="author-name">{profile.name}</p>
-        <a href="/">Back to all posts</a>
+        <a href="/blog/">Back to blog</a>
       </header>
       <main className="article-page">
         <article>
@@ -23,7 +23,7 @@ export function Article({ note }) {
         </article>
       </main>
       <footer className="journal-footer">
-        <a href="/">Back to all posts</a>
+        <a href="/blog/">Back to blog</a>
         <a href={`mailto:${profile.email}`}>Email</a>
       </footer>
     </div>
