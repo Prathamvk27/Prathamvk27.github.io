@@ -13,6 +13,7 @@ export function Article({ note }) {
           <p className="entry-deck">{note.introduction}</p>
           <div className="article-context">
             <p>{note.role} · {note.company}</p>
+            {note.platform && <p>Platform: {note.platform}</p>}
             <p>Work period: {note.date} · {note.location}</p>
           </div>
           <div className="entry-copy">

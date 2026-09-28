@@ -12,22 +12,33 @@ export const Home = () => (
         <a href={`mailto:${profile.email}`}>Email</a>
         <a href={profile.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>
       </div>
+      <nav className="page-index" aria-label="Page index">
+        <span>Index</span>
+        <a href="#experience">Experience</a>
+        <a href="#education">Education</a>
+        <a href="#blog">Blog</a>
+        <a href="#tools">Tools</a>
+      </nav>
     </header>
 
     <main id="main-content">
-      <section className="profile-section" aria-labelledby="experience-title">
+      <section id="experience" className="profile-section" aria-labelledby="experience-title">
         <h2 id="experience-title">Work experience</h2>
         <div className="experience-list">
           {workNotes.map((item) => (
             <article key={item.company}>
               <h3>{item.role}</h3>
-              <p>{item.company} · {item.date}</p>
+              <p>
+                {item.company}
+                {item.platform ? ` · ${item.platform} platform` : ""}
+                {` · ${item.date}`}
+              </p>
             </article>
           ))}
         </div>
       </section>
 
-      <section className="profile-section" aria-labelledby="education-title">
+      <section id="education" className="profile-section" aria-labelledby="education-title">
         <h2 id="education-title">Education</h2>
         <div className="education-list">
           {education.map((item) => (
@@ -39,7 +50,7 @@ export const Home = () => (
         </div>
       </section>
 
-      <section className="journal" aria-labelledby="blog-title">
+      <section id="blog" className="journal" aria-labelledby="blog-title">
         <h2 id="blog-title">Blog</h2>
         <div className="entry-list">
           {workNotes.map((post) => (
@@ -51,7 +62,7 @@ export const Home = () => (
         </div>
       </section>
 
-      <details className="toolkit">
+      <details id="tools" className="toolkit">
         <summary>Tools I use</summary>
         <dl className="toolkit-list">
           {skillGroups.map((group) => (

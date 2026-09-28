@@ -31,12 +31,13 @@ export const workNotes = [
   {
     slug: "shared-model-inference",
     date: "August 2025 - July 2026",
-    company: "Internpro.ai",
+    company: "EPICS at ASU",
+    platform: "Internpro.ai",
     location: "Arizona",
     role: "Engineering Volunteer, AI Infrastructure",
     title: "Bringing new models online",
     introduction:
-      "Shared inference services, background workers, and release checks at Internpro.ai.",
+      "Shared inference services, background workers, and release checks for the Internpro.ai platform.",
     paragraphs: [
       "I built a shared FastAPI and vLLM service that reduced the time needed to bring new models online from one or two days to a few hours.",
       "Long-running document processing moved to Celery and Redis workers, with results in S3 and job state in PostgreSQL. Retry behavior was designed to avoid duplicate outputs. GPU-backed inference services ran on Kubernetes with readiness checks and rolling updates, while Prometheus tracked latency, queue backlog, and errors.",
