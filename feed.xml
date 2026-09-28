@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Pratham Babu — Blog</title>
+    <link>https://prathamvk27.github.io/blog/</link>
+    <description>Notes on building AI services, model infrastructure, and reliable software.</description>
+    <language>en-us</language>
+    <item>
+      <title>AI reporting for real-estate teams</title>
+      <link>https://prathamvk27.github.io/blog/ai-reporting-workflows/</link>
+      <guid isPermaLink="true">https://prathamvk27.github.io/blog/ai-reporting-workflows/</guid>
+      <pubDate>Sun, 27 Sep 2026 00:00:00 GMT</pubDate>
+      <description>Connecting customer data and an LLM to make client reporting faster.</description>
+    </item>
+    <item>
+      <title>Bringing new models online</title>
+      <link>https://prathamvk27.github.io/blog/shared-model-inference/</link>
+      <guid isPermaLink="true">https://prathamvk27.github.io/blog/shared-model-inference/</guid>
+      <pubDate>Sun, 27 Sep 2026 00:00:00 GMT</pubDate>
+      <description>Shared inference services, background workers, and release checks for the Internpro.ai platform.</description>
+    </item>
+    <item>
+      <title>Reliable backends, from tests to releases</title>
+      <link>https://prathamvk27.github.io/blog/reliable-backend-delivery/</link>
+      <guid isPermaLink="true">https://prathamvk27.github.io/blog/reliable-backend-delivery/</guid>
+      <pubDate>Sun, 27 Sep 2026 00:00:00 GMT</pubDate>
+      <description>What went into API testing, caching, backups, and delivery at Ness.</description>
+    </item>
+  </channel>
+</rss>
