@@ -101,6 +101,17 @@ a:focus-visible, summary:focus-visible {
 .toolkit-list { margin: 1rem 0 0; }
 .toolkit-list > div + div { margin-top: 1.25rem; }
 .toolkit-list dd { margin: 0.25rem 0 0; }
+.contact-section > p { margin: 1rem 0; }
+.contact-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+}
+.contact-links a {
+  display: inline-flex;
+  min-height: 2.45rem;
+  align-items: center;
+}
 .journal-footer {
   padding: 0 0 3rem;
   display: flex;

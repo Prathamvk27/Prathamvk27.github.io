@@ -6,6 +6,7 @@ export const profile = {
   email: "prathamvk27@gmail.com",
   phone: "602-394-5089",
   linkedin: "https://linkedin.com/in/prathamvk27",
+  github: "https://github.com/prathamvk27",
   website: "https://prathamvk27.github.io",
   summary:
     "Software engineer who builds and deploys AI services, from customer-facing LLM tools to shared model endpoints. I work across Python, FastAPI, vLLM, containers, cloud infrastructure, release testing, and monitoring.",

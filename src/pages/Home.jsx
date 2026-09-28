@@ -10,14 +10,13 @@ export const Home = () => (
       </p>
       <div className="masthead__links">
         <a href="/blog/">Blog</a>
-        <a href={`mailto:${profile.email}`}>Email</a>
-        <a href={profile.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>
       </div>
       <nav className="page-index" aria-label="Page index">
         <span>Index</span>
         <a href="#experience">Experience</a>
         <a href="#education">Education</a>
         <a href="#tools">Tools</a>
+        <a href="#contact">Reach out</a>
       </nav>
     </header>
 
@@ -58,10 +57,20 @@ export const Home = () => (
           ))}
         </dl>
       </details>
+
+      <section id="contact" className="profile-section contact-section" aria-labelledby="contact-title">
+        <h2 id="contact-title">Reach out</h2>
+        <p>I am open to conversations about AI engineering, infrastructure, and software delivery.</p>
+        <div className="contact-links">
+          <a href={`mailto:${profile.email}`}>Email</a>
+          <a href={profile.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href={profile.github} target="_blank" rel="noopener noreferrer">GitHub</a>
+        </div>
+      </section>
     </main>
 
     <footer className="journal-footer">
-      <a href={`mailto:${profile.email}`}>Say hello</a>
+      <p>{profile.shortName}</p>
     </footer>
   </div>
 )
