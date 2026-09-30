@@ -6,6 +6,13 @@
     <description>Notes on building AI services, model infrastructure, and reliable software.</description>
     <language>en-us</language>
     <item>
+      <title>What Is an Agent Harness?</title>
+      <link>https://prathamvk27.github.io/blog/what-is-an-agent-harness/</link>
+      <guid isPermaLink="true">https://prathamvk27.github.io/blog/what-is-an-agent-harness/</guid>
+      <pubDate>Mon, 28 Sep 2026 00:00:00 GMT</pubDate>
+      <description>A simple explanation of the infrastructure that turns a language model into an agent capable of taking action.</description>
+    </item>
+    <item>
       <title>AI reporting for real-estate teams</title>
       <link>https://prathamvk27.github.io/blog/ai-reporting-workflows/</link>
       <guid isPermaLink="true">https://prathamvk27.github.io/blog/ai-reporting-workflows/</guid>

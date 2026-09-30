@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="A simple explanation of the infrastructure that turns a language model into an agent capable of taking action." />
+    <meta property="og:title" content="What Is an Agent Harness? — Pratham Babu" />
+    <meta property="og:description" content="A simple explanation of the infrastructure that turns a language model into an agent capable of taking action." />
+    <meta property="og:url" content="https://prathamvk27.github.io/blog/what-is-an-agent-harness/" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="What Is an Agent Harness? — Pratham Babu" />
+    <meta name="twitter:description" content="A simple explanation of the infrastructure that turns a language model into an agent capable of taking action." />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="alternate" type="application/rss+xml" title="Pratham Babu — Blog" href="/feed.xml" />
+    <title>What Is an Agent Harness? — Pratham Babu</title>
+    <script type="module" crossorigin src="/assets/index-D2MGnh2z.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-B_Is5s48.css">
+  </head>
+  <body>
+    <div id="root"><div class="journal-shell"><header class="article-header"><a class="site-mark" href="/" aria-label="Pratham Babu home">PV</a><p class="author-name">Pratham Vanangadu Keshava Babu</p><a href="/blog/">Back to blog</a></header><main class="article-page"><article><h1>What Is an Agent Harness?</h1><p class="entry-deck">A simple explanation of the infrastructure that turns a language model into an agent capable of taking action.</p><p class="article-date"><time dateTime="2026-09-28">September 28, 2026</time></p><div class="entry-copy"><p>First, let us define what an agent is. An agent is a system that combines a model with instructions and tools so that it can reason about a task and take action. Memory and state management can help it work across multiple steps, while evals help us test whether the system behaves reliably.</p>
+<p>An agent harness is the infrastructure and operating layer that supports a large language model. It turns a text chatbot that takes text as input and returns text as output into a system that can inspect its environment, use tools, maintain context, and act toward an objective.</p>
+<p>One simple way to understand this relationship is to think of the model as the brain and the harness as the body. The model provides reasoning, while the harness gives the model the capabilities and controls it needs to complete tasks.</p>
+<h2>Core components of an agent harness</h2>
+<ul>
+<li><strong>The orchestration layer:</strong> This layer helps the model explore and observe its environment, inspect data, determine the necessary steps, and form a plan of action.</li>
+<li><strong>Tools—the hands:</strong> Tools are the hands of the agent. They can include MCP integrations, APIs, shell access, and other functions that allow the model to interact with external software.</li>
+<li><strong>Sandboxed environments:</strong> When an agent needs to execute code, sandboxes provide isolated environments, such as virtual machines or containers. They allow the agent to run commands and edit files while reducing risk to the host system.</li>
+<li><strong>Memory and context management:</strong> These systems maintain relevant context and handle context-window limits. They can include short-term conversation history, long-term state persistence, context compaction, and the loading or offloading of tool results.</li>
+<li><strong>Evaluators and feedback loops:</strong> These components check whether an intermediate output meets the objective. When it does not, the harness can trigger a retry, request more information, or choose a different step.</li>
+<li><strong>Guardrails and permissions:</strong> These controls can redact personally identifiable information, require human approval for sensitive actions, enforce access boundaries, apply rate limits, and record actions for safety and accountability in production.</li>
+</ul></div><p class="entry-topics"><span>Topics</span> AI Agents, Agent Harnesses, LLM Infrastructure</p></article></main><footer class="journal-footer"><a href="/blog/">Back to blog</a><a href="mailto:prathamvk27@gmail.com">Email</a></footer></div></div>
+  </body>
+</html>
