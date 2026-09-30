@@ -41,9 +41,19 @@ function markdownMetadataPlugin() {
     enforce: "pre",
     transform(source, id) {
       const [filePath, query = ""] = id.split("?")
-      if (!filePath.endsWith(".md") || !new URLSearchParams(query).has("meta")) return null
+      if (!filePath.endsWith(".md")) return null
+
+      const parameters = new URLSearchParams(query)
+      const markdownSource = parameters.has("raw")
+        ? fs.readFileSync(filePath, "utf-8")
+        : source
+      const metadata = readFrontmatter(markdownSource, filePath)
+      if (parameters.has("raw") && metadata.draft === "true") {
+        return { code: 'export default ""', map: null }
+      }
+      if (!parameters.has("meta")) return null
       return {
-        code: `export default ${JSON.stringify(readFrontmatter(source, filePath))}`,
+        code: `export default ${JSON.stringify(metadata)}`,
         map: null,
       }
     },

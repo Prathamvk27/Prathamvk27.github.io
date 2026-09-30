@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react"
 import { blogPageCount, blogPosts, formatPublishedDate, postsForPage } from "../content/posts"
 import { profile } from "../data/profileData"
+import { SiteMark } from "../components/SiteMark"
 
 const SEARCH_RESULT_LIMIT = 50
 
@@ -27,6 +28,7 @@ export function BlogIndex({ page = 1 }) {
   return (
     <div className="journal-shell">
       <header className="article-header">
+        <SiteMark />
         <p className="author-name">{profile.name}</p>
         <a href="/">Home</a>
       </header>

@@ -1,6 +1,7 @@
 import Markdown from "react-markdown"
 import { formatPublishedDate } from "../content/posts"
 import { profile } from "../data/profileData"
+import { SiteMark } from "../components/SiteMark"
 
 export function Article({ post }) {
   const hasWorkContext = post.role || post.company || post.workPeriod || post.location
@@ -8,6 +9,7 @@ export function Article({ post }) {
   return (
     <div className="journal-shell">
       <header className="article-header">
+        <SiteMark />
         <p className="author-name">{profile.name}</p>
         <a href="/blog/">Back to blog</a>
       </header>

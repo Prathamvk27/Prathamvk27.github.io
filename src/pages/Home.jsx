@@ -1,8 +1,10 @@
 import { education, profile, skillGroups, workExperience } from "../data/profileData"
+import { SiteMark } from "../components/SiteMark"
 
 export const Home = () => (
   <div className="journal-shell">
     <header className="masthead">
+      <SiteMark />
       <h1 className="author-name">{profile.name}</h1>
       <p className="masthead__introduction">
         I build and deploy AI services, from tools people use to the infrastructure behind them.

@@ -39,6 +39,19 @@ a:focus-visible, summary:focus-visible {
   overflow-wrap: break-word;
 }
 .masthead { padding: clamp(2.5rem, 8vw, 5rem) 0 3.25rem; }
+.site-mark {
+  display: flex;
+  width: fit-content;
+  min-height: 2.45rem;
+  align-items: center;
+  margin-bottom: 1rem;
+  font-size: 1.35rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.08em;
+  text-decoration: none;
+}
+.site-mark:hover { text-decoration: underline; text-underline-offset: 0.22em; }
 .author-name {
   margin: 0 0 1.25rem;
   font-size: 1.12rem;
@@ -65,7 +78,7 @@ a:focus-visible, summary:focus-visible {
   min-height: 2.45rem;
   align-items: center;
 }
-.masthead__links a, .journal-footer a, .article-header > a {
+.masthead__links a, .journal-footer a, .article-header > a:not(.site-mark) {
   display: inline-flex;
   min-height: 2.45rem;
   align-items: center;
