@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="How I separate an agent's runtime, guardrails, and evaluation system—and what an evaluation harness actually measures." />
+    <meta property="og:title" content="My Take on Evaluation Harnesses — Pratham Babu" />
+    <meta property="og:description" content="How I separate an agent's runtime, guardrails, and evaluation system—and what an evaluation harness actually measures." />
+    <meta property="og:url" content="https://prathamvk27.github.io/blog/my-take-on-evaluation-harnesses/" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="My Take on Evaluation Harnesses — Pratham Babu" />
+    <meta name="twitter:description" content="How I separate an agent's runtime, guardrails, and evaluation system—and what an evaluation harness actually measures." />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="alternate" type="application/rss+xml" title="Pratham Babu — Blog" href="/feed.xml" />
+    <title>My Take on Evaluation Harnesses — Pratham Babu</title>
+    <script type="module" crossorigin src="/assets/index-Dxb2a-AM.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-B_Is5s48.css">
+  </head>
+  <body>
+    <div id="root"><div class="journal-shell"><header class="article-header"><a class="site-mark" href="/" aria-label="Pratham Babu home">PV</a><p class="author-name">Pratham Vanangadu Keshava Babu</p><a href="/blog/">Back to blog</a></header><main class="article-page"><article><h1>My Take on Evaluation Harnesses</h1><p class="entry-deck">How I separate an agent&#x27;s runtime, guardrails, and evaluation system—and what an evaluation harness actually measures.</p><p class="article-date"><time dateTime="2026-09-29">September 29, 2026</time></p><div class="entry-copy"><p>Before explaining my understanding of an evaluation harness, I wanted to understand what constitutes a harness in the first place. An agent harness is everything around the model that helps it operate: orchestration, tools, memory, state, permissions, and recovery behavior. From that simple definition, I initially thought an evaluation harness was another layer wrapped around the entire agent.</p>
+<p>That understanding was close, but it mixed together systems with different responsibilities.</p>
+<p>An evaluation harness is not the runtime layer that operates the agent. It is the testing and measurement system used to determine how well the agent behaves. To make that distinction clearer, I divide the surrounding system into three broad areas:</p>
+<ul>
+<li><strong>Runtime layer:</strong> The core loop that keeps the model running. It handles prompt construction, tool orchestration, state transitions, and error recovery.</li>
+<li><strong>Capabilities and responsibilities:</strong> The rules that define what the agent should do, what it can access, and how it uses tools, memory, state, and context.</li>
+<li><strong>Assurance and validation:</strong> The systems that measure behavior, enforce safety boundaries, and reveal failures. Evaluation harnesses and guardrails both live in this broader area, but they serve different purposes.</li>
+</ul>
+<h2>Offline evaluations, online evaluations, and guardrails</h2>
+<p>Evaluations can run both offline and online.</p>
+<p><strong>Offline evaluation</strong> usually runs during development against a fixed or curated dataset. It does not operate on a live request before that request reaches a user. This is the clearest form of benchmarking: run a known set of examples, collect the agent&#x27;s outputs and execution traces, and compare them against expected behavior.</p>
+<p><strong>Online evaluation</strong> scores real production traces or request-and-response data. It can use the same kinds of evaluators as an offline test, including deterministic checks or an LLM as a judge. Its purpose is usually monitoring, detecting regressions, and discovering cases that should be added to the offline dataset.</p>
+<p>A <strong>guardrail</strong> is different because it enforces a rule in the live execution path. It may block an unsafe input, reject a tool call, redact an output, request human approval, or trigger a fallback before the action continues. An online evaluator measures behavior; a guardrail intervenes in behavior. In some systems, an online evaluation result can trigger an intervention, so the boundary can overlap, but the purpose of each system remains different.</p>
+<h2>What makes up an evaluation harness?</h2>
+<p>An evaluation harness needs more than metrics and datasets. In practice, it usually contains:</p>
+<ul>
+<li><strong>A dataset:</strong> Representative test cases, including golden examples, difficult edge cases, and previously observed failures.</li>
+<li><strong>The system under test:</strong> A specific version of the agent, including its model, prompts, tools, and configuration.</li>
+<li><strong>A runner:</strong> The component that repeatedly invokes the agent under controlled conditions.</li>
+<li><strong>Trace collection:</strong> Records of final responses, tool calls, intermediate steps, latency, errors, and other execution details.</li>
+<li><strong>Evaluators and metrics:</strong> Deterministic checks, model-based graders, human review, or task-specific measurements.</li>
+<li><strong>Aggregation and reporting:</strong> Summaries that make it possible to compare versions, identify regressions, and inspect individual failures.</li>
+</ul>
+<p>Traditional benchmarks are useful for comparing foundation models, but they are usually not sufficient for evaluating an application-specific agent. An agent must also be evaluated on whether it selects the correct tools, supplies valid arguments, follows permissions, completes the task, recovers from errors, and stays within acceptable cost and latency limits. These measurements and datasets must reflect the agent&#x27;s actual use case.</p>
+<h2>A typical evaluation loop</h2>
+<p>A single evaluation run usually follows this process:</p>
+<ol>
+<li>Load a golden example from the dataset.</li>
+<li>Invoke the agent with the example&#x27;s input and test configuration.</li>
+<li>Collect the final response and, when available, the full execution trace.</li>
+<li>Run the relevant metric suite or graders against the result.</li>
+<li>Store the scores, outputs, and traces.</li>
+<li>Aggregate the results and inspect failures or regressions.</li>
+</ol>
+<p>The harness repeats this loop across the dataset, making agent behavior measurable and allowing one version to be compared with another.</p>
+<p>This gives me a clearer definition: the agent harness helps the model act, while the evaluation harness helps us determine whether the resulting system acts well. I will explore how to set one up in the coming posts.</p></div><p class="entry-topics"><span>Topics</span> AI Agents, Evaluations, Agent Harnesses, LLMOps</p></article></main><footer class="journal-footer"><a href="/blog/">Back to blog</a><a href="mailto:prathamvk27@gmail.com">Email</a></footer></div></div>
+  </body>
+</html>

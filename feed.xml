@@ -6,6 +6,13 @@
     <description>Notes on building AI services, model infrastructure, and reliable software.</description>
     <language>en-us</language>
     <item>
+      <title>My Take on Evaluation Harnesses</title>
+      <link>https://prathamvk27.github.io/blog/my-take-on-evaluation-harnesses/</link>
+      <guid isPermaLink="true">https://prathamvk27.github.io/blog/my-take-on-evaluation-harnesses/</guid>
+      <pubDate>Tue, 29 Sep 2026 00:00:00 GMT</pubDate>
+      <description>How I separate an agent&apos;s runtime, guardrails, and evaluation system—and what an evaluation harness actually measures.</description>
+    </item>
+    <item>
       <title>What Is an Agent Harness?</title>
       <link>https://prathamvk27.github.io/blog/what-is-an-agent-harness/</link>
       <guid isPermaLink="true">https://prathamvk27.github.io/blog/what-is-an-agent-harness/</guid>
