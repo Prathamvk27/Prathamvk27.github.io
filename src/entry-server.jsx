@@ -18,6 +18,11 @@ const archivePages = Array.from(
 
 export const pages = [
   {
+    path: "/solute-labs/",
+    title: "Solute Labs",
+    description: "Pratham Babu's founding engineering work at Solute Labs, including GodSend and AI engineering foundations.",
+  },
+  {
     path: "/blog/",
     title: "Blog",
     description: "Notes on building AI services, model infrastructure, and reliable software.",

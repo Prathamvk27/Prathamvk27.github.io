@@ -21,6 +21,7 @@ export const workExperience = [
   {
     company: "Solute Labs",
     role: "Founding Engineer",
+    url: "/solute-labs/",
   },
   {
     date: "August 2025 - July 2026",

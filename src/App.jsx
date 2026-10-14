@@ -2,11 +2,13 @@ import { Home } from "./pages/Home"
 import { Article } from "./pages/Article"
 import { BlogIndex } from "./pages/BlogIndex"
 import { NotFound } from "./pages/NotFound"
+import { SoluteLabs } from "./pages/SoluteLabs"
 import { blogPageCount } from "./content/posts"
 
 function App({ pathname = "/", post = null }) {
   const path = pathname.replace(/\/+$/, "") || "/"
   if (path === "/") return <Home />
+  if (path === "/solute-labs") return <SoluteLabs />
   if (path === "/blog") return <BlogIndex page={1} />
 
   const archiveMatch = path.match(/^\/blog\/page\/(\d+)$/)
