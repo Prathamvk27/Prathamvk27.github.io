@@ -15,7 +15,9 @@ export const Home = () => (
       </div>
       <section className="featured-work" aria-labelledby="featured-work-title">
         <p className="featured-work__label">Current work</p>
-        <h2 id="featured-work-title"><a href="/solute-labs/">Solute Labs</a></h2>
+        <h2 id="featured-work-title">
+          <a href="https://prathamvk27.github.io/solute-labs/">Solute Labs</a>
+        </h2>
         <p className="featured-work__role">Founding engineer · AI engineering</p>
         <p>
           Our first product, GodSend, helps people draft thoughtful job outreach from their own

@@ -15,7 +15,7 @@ This is a personal portfolio and writing space for Pratham Babu. It should feel 
 - Use semantic headings, lists, links, and form controls. Keep keyboard focus visible, links recognizable without color alone, and touch targets comfortable. Maintain readable line lengths and responsive wrapping.
 - Add content in the existing layout before adding new interface elements. A short work item is a role and organization; expand it only when the user supplies a clear reason and verified details.
 - Give current company and product work a distinct, compact section in the masthead: a small section label, a clear linked company name, a role line, one concrete product description, and a product link. A thin rule and type hierarchy may separate it from the introduction while keeping the same paper, purple, and text-link system. Avoid a promotional card or separate visual system.
-- When a company has no verified public site, link its name to a concise page here that explains the work and leads to the live product. Do not link visitors to an unrelated company with a similar name or a private repository.
+- Link company and product names to their verified public destinations. Keep those links clear enough that a visitor can reach the company site or try the product directly.
 
 ## Editorial voice
 
