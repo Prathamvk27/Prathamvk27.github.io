@@ -32,7 +32,7 @@ export const Home = () => (
               <p>
                 {item.company}
                 {item.platform ? ` · ${item.platform} platform` : ""}
-                {` · ${item.date}`}
+                {item.date ? ` · ${item.date}` : ""}
               </p>
             </article>
           ))}
