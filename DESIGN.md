@@ -14,6 +14,7 @@ This is a personal portfolio and writing space for Pratham Babu. It should feel 
 - Build with the existing React components and CSS patterns. The homepage flows from introduction to work experience, education, tools, and contact. Blog pages share the same shell, mark, typography, and footer language.
 - Use semantic headings, lists, links, and form controls. Keep keyboard focus visible, links recognizable without color alone, and touch targets comfortable. Maintain readable line lengths and responsive wrapping.
 - Add content in the existing layout before adding new interface elements. A short work item is a role and organization; expand it only when the user supplies a clear reason and verified details.
+- Highlight a current product with one concise sentence and a descriptive text link in the existing masthead. Keep it specific to what the product does, without adding a promotional card or separate visual system.
 
 ## Editorial voice
 

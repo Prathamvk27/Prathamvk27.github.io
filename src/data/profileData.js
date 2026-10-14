@@ -14,13 +14,13 @@ export const profile = {
 
 export const workExperience = [
   {
-    company: "Solute Labs",
-    role: "Founding Engineer",
-  },
-  {
     date: "August 2026 - Present",
     company: "Automation Interns",
     role: "Forward Deployed Engineer",
+  },
+  {
+    company: "Solute Labs",
+    role: "Founding Engineer",
   },
   {
     date: "August 2025 - July 2026",

@@ -13,6 +13,10 @@ export const Home = () => (
       <div className="masthead__links">
         <a href="/blog/">Blog</a>
       </div>
+      <p className="masthead__project">
+        I'm a founding engineer at Solute Labs, building AI tools for more thoughtful outreach.{" "}
+        <a href="https://prathamvk27.github.io/email_automation/">Try GodSend</a>
+      </p>
       <nav className="page-index" aria-label="Page index">
         <span>Index</span>
         <a href="#experience">Experience</a>
