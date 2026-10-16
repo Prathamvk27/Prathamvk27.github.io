@@ -1,7 +1,7 @@
 ---
 title: "Thursdays and Fridays Are CUDA Days — Part 1"
 description: "A first look at CUDA's execution model, memory, and vector addition."
-published: 2026-10-08
+published: 2026-10-01
 topics: "CUDA, GPU programming"
 draft: false
 ---
