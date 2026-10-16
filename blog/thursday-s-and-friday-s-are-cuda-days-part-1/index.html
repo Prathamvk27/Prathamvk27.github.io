@@ -14,11 +14,11 @@
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="alternate" type="application/rss+xml" title="Pratham Babu — Blog" href="/feed.xml" />
     <title>Thursdays and Fridays Are CUDA Days — Part 1 — Pratham Babu</title>
-    <script type="module" crossorigin src="/assets/index-BrRHTyKT.js"></script>
+    <script type="module" crossorigin src="/assets/index-CTQi7ooE.js"></script>
     <link rel="stylesheet" crossorigin href="/assets/index-Cj6Non2j.css">
   </head>
   <body>
-    <div id="root"><div class="journal-shell"><header class="article-header"><a class="site-mark" href="/" aria-label="Pratham Babu home">PV</a><p class="author-name">Pratham Vanangadu Keshava Babu</p><a href="/blog/">Back to blog</a></header><main class="article-page"><article><h1>Thursdays and Fridays Are CUDA Days — Part 1</h1><p class="entry-deck">A first look at CUDA&#x27;s execution model, memory, and vector addition.</p><p class="article-date"><time dateTime="2026-10-08">October 8, 2026</time></p><div class="entry-copy"><p>Before we start, a shoutout to Zachary Huang for his clear explanation of CUDA. His kitchen analogy helped me think about why GPUs are useful for certain kinds of work.</p>
+    <div id="root"><div class="journal-shell"><header class="article-header"><a class="site-mark" href="/" aria-label="Pratham Babu home">PV</a><p class="author-name">Pratham Vanangadu Keshava Babu</p><a href="/blog/">Back to blog</a></header><main class="article-page"><article><h1>Thursdays and Fridays Are CUDA Days — Part 1</h1><p class="entry-deck">A first look at CUDA&#x27;s execution model, memory, and vector addition.</p><p class="article-date"><time dateTime="2026-10-01">October 1, 2026</time></p><div class="entry-copy"><p>Before we start, a shoutout to Zachary Huang for his clear explanation of CUDA. His kitchen analogy helped me think about why GPUs are useful for certain kinds of work.</p>
 <p>A CPU is like a chef who can prepare many different parts of a meal. A GPU is more like a large team that can each do a small, similar task. If the task can be split into many independent pieces, that team can work on them at the same time.</p>
 <p>CUDA is NVIDIA&#x27;s platform for running parallel work on its GPUs. Its programming model organizes work into <strong>threads</strong>, <strong>blocks</strong>, and <strong>grids</strong>:</p>
 <ol>
