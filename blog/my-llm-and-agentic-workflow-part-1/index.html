@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="How I scope an engineering task, inspect the codebase, and plan before an LLM makes changes." />
+    <meta property="og:title" content="My LLM and Agentic Workflow, Part 1 — Pratham Babu" />
+    <meta property="og:description" content="How I scope an engineering task, inspect the codebase, and plan before an LLM makes changes." />
+    <meta property="og:url" content="https://prathamvk27.github.io/blog/my-llm-and-agentic-workflow-part-1/" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="My LLM and Agentic Workflow, Part 1 — Pratham Babu" />
+    <meta name="twitter:description" content="How I scope an engineering task, inspect the codebase, and plan before an LLM makes changes." />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="alternate" type="application/rss+xml" title="Pratham Babu — Blog" href="/feed.xml" />
+    <title>My LLM and Agentic Workflow, Part 1 — Pratham Babu</title>
+    <script type="module" crossorigin src="/assets/index-CJrDfQNE.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-Cj6Non2j.css">
+  </head>
+  <body>
+    <div id="root"><div class="journal-shell"><header class="article-header"><a class="site-mark" href="/" aria-label="Pratham Babu home">PV</a><p class="author-name">Pratham Vanangadu Keshava Babu</p><a href="/blog/">Back to blog</a></header><main class="article-page"><article><h1>My LLM and Agentic Workflow, Part 1</h1><p class="entry-deck">How I scope an engineering task, inspect the codebase, and plan before an LLM makes changes.</p><p class="article-date"><time dateTime="2026-10-05">October 5, 2026</time></p><div class="entry-copy"><p>Prompting is becoming a big part of software development, and there is a lot of noise around it. Reviewing code can also become a hassle. I have started using a workflow that helps me scope work, understand the codebase, and check the result before I move on.</p>
+<p>Before asking an LLM to change code, I think about three ways to use it:</p>
+<ol>
+<li><strong>Interactive pair programming:</strong> I use this for authentication, business logic, database changes, concurrency, unclear product behavior, and production bug fixes. These tasks benefit from a back-and-forth while I stay close to the decisions.</li>
+<li><strong>Background agents:</strong> I use these for workflow documentation, finding test gaps, architecture research, small isolated refactors, dependency updates, and familiar migrations with reliable CI checks.</li>
+<li><strong>Keep the work under direct human control:</strong> I do not delegate production deployments, destructive data operations, secrets, high-risk database migrations, or merging to an LLM. These tasks need explicit human oversight.</li>
+</ol>
+<h2>1. Start with a small engineering task</h2>
+<p>Before the agent reads the code, I give it a short task contract:</p>
+<ul>
+<li><strong>Goal:</strong> What should be achieved? (Required.)</li>
+<li><strong>Why it matters:</strong> How does this help the current workflow? (Optional.)</li>
+<li><strong>In scope:</strong> What files or behavior may change? (Required.)</li>
+<li><strong>Out of scope:</strong> What must the agent leave alone? (Required.)</li>
+<li><strong>Acceptance criteria:</strong> What observable conditions will show that the task is complete? (Required.)</li>
+<li><strong>Risks and compatibility concerns:</strong> What integrations or constraints should the agent account for? (Optional.)</li>
+<li><strong>Verification:</strong> Which checks should run, and what evidence should they produce? (Required.)</li>
+</ul>
+<h2>2. Establish a clean starting point</h2>
+<p>Sometimes I start in an inspection-only mode (also called plan mode in some tools). Before asking for changes, I check the repository state and recent history:</p>
+<pre><code class="language-sh">git status --short
+git branch --show-current
+git log --oneline -10
+</code></pre>
+<p>Then I read the relevant repository guide, tests, and code paths without editing files. For longer work or parallel tasks, I use a separate worktree:</p>
+<pre><code class="language-sh">git worktree add ../project-dedup -b fix/contact-dedup
+</code></pre>
+<p>This creates a separate checkout for the new branch, based on the current commit. I make sure that commit is the intended starting point before I begin.</p>
+<p>I also take inspiration from Anthropic&#x27;s <a href="https://code.claude.com/docs/en/best-practices">Claude Code best practices</a>, which recommend exploring the codebase before planning and implementation, giving the agent a way to verify its work, and using worktrees for parallel sessions. In my own workflow, I also use commits as recovery points.</p>
+<h2>3. Ask the agent to inspect before editing</h2>
+<p>When I first open a task—or return to it later—I often begin with a read-only prompt:</p>
+<blockquote>
+<p>Do not edit files. Trace the current behavior for this task. Identify the entry point, relevant files, data flow, existing tests, and failure modes. Recommend the smallest safe place to make a change, with evidence.</p>
+</blockquote>
+<p>I expect the response to identify the request entry point, related modules and dependencies, tests, questions, and possible blockers. That gives me a clearer picture of the repository before implementation starts.</p>
+<h2>4. Plan before implementation</h2>
+<p>Once the code path is clear, I ask for a plan that names the files to change, the data and APIs involved, tests to run, risks and mitigations, and commands to verify the result. The point is to agree on the scope and how we will know the task is done before editing begins.</p>
+<p>In Part 2, I will cover how I guide implementation and review the changes.</p></div><p class="entry-topics"><span>Topics</span> LLMs, AI agents, software engineering</p></article></main><footer class="journal-footer"><a href="/blog/">Back to blog</a><a href="mailto:prathamvk27@gmail.com">Email</a></footer></div></div>
+  </body>
+</html>
