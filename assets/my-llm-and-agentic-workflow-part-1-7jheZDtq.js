@@ -1,7 +1,7 @@
 const e=`---
 title: "My LLM and Agentic Workflow, Part 1"
 description: "How I scope an engineering task, inspect the codebase, and plan before an LLM makes changes."
-published: 2026-10-05
+published: 2026-10-02
 topics: "LLMs, AI agents, software engineering"
 draft: false
 ---
