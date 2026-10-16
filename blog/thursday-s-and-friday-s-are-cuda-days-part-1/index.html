@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="A first look at CUDA's execution model, memory, and vector addition." />
+    <meta property="og:title" content="Thursdays and Fridays Are CUDA Days — Part 1 — Pratham Babu" />
+    <meta property="og:description" content="A first look at CUDA's execution model, memory, and vector addition." />
+    <meta property="og:url" content="https://prathamvk27.github.io/blog/thursday-s-and-friday-s-are-cuda-days-part-1/" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Thursdays and Fridays Are CUDA Days — Part 1 — Pratham Babu" />
+    <meta name="twitter:description" content="A first look at CUDA's execution model, memory, and vector addition." />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="alternate" type="application/rss+xml" title="Pratham Babu — Blog" href="/feed.xml" />
+    <title>Thursdays and Fridays Are CUDA Days — Part 1 — Pratham Babu</title>
+    <script type="module" crossorigin src="/assets/index-BrRHTyKT.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-Cj6Non2j.css">
+  </head>
+  <body>
+    <div id="root"><div class="journal-shell"><header class="article-header"><a class="site-mark" href="/" aria-label="Pratham Babu home">PV</a><p class="author-name">Pratham Vanangadu Keshava Babu</p><a href="/blog/">Back to blog</a></header><main class="article-page"><article><h1>Thursdays and Fridays Are CUDA Days — Part 1</h1><p class="entry-deck">A first look at CUDA&#x27;s execution model, memory, and vector addition.</p><p class="article-date"><time dateTime="2026-10-08">October 8, 2026</time></p><div class="entry-copy"><p>Before we start, a shoutout to Zachary Huang for his clear explanation of CUDA. His kitchen analogy helped me think about why GPUs are useful for certain kinds of work.</p>
+<p>A CPU is like a chef who can prepare many different parts of a meal. A GPU is more like a large team that can each do a small, similar task. If the task can be split into many independent pieces, that team can work on them at the same time.</p>
+<p>CUDA is NVIDIA&#x27;s platform for running parallel work on its GPUs. Its programming model organizes work into <strong>threads</strong>, <strong>blocks</strong>, and <strong>grids</strong>:</p>
+<ol>
+<li>A <strong>thread</strong> runs one instance of the kernel code.</li>
+<li>A <strong>block</strong> groups threads that can cooperate, including through shared memory.</li>
+<li>A <strong>grid</strong> is the collection of blocks launched for a kernel.</li>
+</ol>
+<p>Threads are software work items, not individual physical CUDA cores. The GPU schedules groups of threads onto its streaming multiprocessors (SMs). An NVIDIA A100 has 6,912 FP32 CUDA cores, but the number of threads that can be resident at once depends on the GPU and on resources used by the kernel. A launched grid can contain more threads than can run concurrently; the GPU schedules them in waves.</p>
+<h2>A short look at GPU memory</h2>
+<p>In a typical discrete-GPU setup, data may move between host memory (the CPU&#x27;s memory) and device memory (the GPU&#x27;s memory). The GPU also has faster, smaller storage close to its compute units:</p>
+<ol>
+<li><strong>Global memory</strong> is the large device memory accessible to threads. It has much higher capacity than on-chip storage, but accessing it generally costs more time.</li>
+<li><strong>Shared memory</strong> is on-chip storage that threads in the same block can share. It can help when threads reuse data or need to cooperate.</li>
+<li><strong>Registers</strong> are small, fast storage used privately by each thread.</li>
+</ol>
+<p>These are general relationships, not fixed latency numbers: performance varies by GPU architecture, access pattern, and workload. The right optimization depends on the work. For vector addition, each input value is read once, so moving values through shared memory usually does not help. Coalesced global-memory access and avoiding unnecessary host-to-device transfers matter more.</p>
+<h2>Our first kernel: vector addition</h2>
+<p>The task is to add two arrays element by element:</p>
+<pre><code class="language-text">C[i] = A[i] + B[i]
+</code></pre>
+<p>Each output element is independent, so one thread can calculate one element. Here is the kernel:</p>
+<pre><code class="language-cuda">__global__ void addKernel(int *c, const int *a, const int *b, int size) {
+    int i = blockIdx.x * blockDim.x + threadIdx.x;
+    if (i &lt; size) {
+        c[i] = a[i] + b[i];
+    }
+}
+</code></pre>
+<p>The index calculation gives each thread a unique position:</p>
+<pre><code class="language-text">i = blockIdx.x * blockDim.x + threadIdx.x
+</code></pre>
+<p><code>blockIdx.x</code> identifies the block, <code>blockDim.x</code> is the number of threads in each block, and <code>threadIdx.x</code> identifies a thread within its block. For example, thread 12 in block 5, with 256 threads per block, calculates index <code>5 * 256 + 12 = 1292</code>.</p>
+<p>The CPU launches the kernel and manages the data transfer. This is the shape of the host-side steps; it is an outline, not a complete standalone program:</p>
+<ol>
+<li>
+<p>Allocate device arrays with <code>cudaMalloc</code>.</p>
+</li>
+<li>
+<p>Copy the input arrays to device memory with <code>cudaMemcpy(..., cudaMemcpyHostToDevice)</code>.</p>
+</li>
+<li>
+<p>Choose a block size and calculate the number of blocks:</p>
+<pre><code class="language-cuda">int threadsPerBlock = 256;
+int blocksPerGrid = (size + threadsPerBlock - 1) / threadsPerBlock;
+addKernel&lt;&lt;&lt;blocksPerGrid, threadsPerBlock&gt;&gt;&gt;(dev_c, dev_a, dev_b, size);
+</code></pre>
+</li>
+<li>
+<p>Copy the result back with <code>cudaMemcpy(..., cudaMemcpyDeviceToHost)</code>.</p>
+</li>
+<li>
+<p>Free the device arrays with <code>cudaFree</code>.</p>
+</li>
+</ol>
+<p>The <code>i &lt; size</code> check handles the extra threads in the final block when the array length is not an exact multiple of the block size. For a million-element example initialized with <code>A[i] = i</code> and <code>B[i] = 2 * i</code>, the expected values include <code>C[0] = 0</code> and <code>C[999999] = 2999997</code>.</p>
+<h2>What should we measure?</h2>
+<p>This example uses integer addition, so GFLOPS (floating-point operations per second) is not the right measure. Vector addition also does little computation for the amount of data it reads and writes, so effective memory bandwidth is often a more useful metric. For 32-bit values, each element reads two 4-byte inputs and writes one 4-byte output: 12 bytes per element, before considering caching and other effects.</p>
+<p>To compare implementations, measure elapsed kernel time on a stated GPU, use the same input size, and explain whether the timing includes data transfers. Report the method and repeated measurements; a speedup number without those details is hard to interpret. Host-to-device transfers can cost much more per byte than device-memory access, so a useful general rule is to send data once, do enough work on the GPU, and copy back only what is needed.</p>
+<p>In the next post, I will look at optimizing the kernel and measuring the results.</p></div><p class="entry-topics"><span>Topics</span> CUDA, GPU programming</p></article></main><footer class="journal-footer"><a href="/blog/">Back to blog</a><a href="mailto:prathamvk27@gmail.com">Email</a></footer></div></div>
+  </body>
+</html>
