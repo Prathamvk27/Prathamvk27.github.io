@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="How I turn an agent plan into tests, keep implementation scoped, and review the result." />
+    <meta property="og:title" content="My LLM and Agentic Workflow, Part 2 — Pratham Babu" />
+    <meta property="og:description" content="How I turn an agent plan into tests, keep implementation scoped, and review the result." />
+    <meta property="og:url" content="https://prathamvk27.github.io/blog/my-llm-and-agentic-workflow-part-2/" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="My LLM and Agentic Workflow, Part 2 — Pratham Babu" />
+    <meta name="twitter:description" content="How I turn an agent plan into tests, keep implementation scoped, and review the result." />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="alternate" type="application/rss+xml" title="Pratham Babu — Blog" href="/feed.xml" />
+    <title>My LLM and Agentic Workflow, Part 2 — Pratham Babu</title>
+    <script type="module" crossorigin src="/assets/index-BDzjIiS_.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-Cj6Non2j.css">
+  </head>
+  <body>
+    <div id="root"><div class="journal-shell"><header class="article-header"><a class="site-mark" href="/" aria-label="Pratham Babu home">PV</a><p class="author-name">Pratham Vanangadu Keshava Babu</p><a href="/blog/">Back to blog</a></header><main class="article-page"><article><h1>My LLM and Agentic Workflow, Part 2</h1><p class="entry-deck">How I turn an agent plan into tests, keep implementation scoped, and review the result.</p><p class="article-date"><time dateTime="2026-10-05">October 5, 2026</time></p><div class="entry-copy"><p>This continues <a href="/blog/my-llm-and-agentic-workflow-part-1/">Part 1 of my LLM and agentic workflow</a>, where I covered task scoping, repository inspection, and planning. Here I’ll explain how I turn a plan into tests, guide implementation, and review the result.</p>
+<h2>5. Turn the plan into acceptance criteria and tests</h2>
+<p>For a behavioral change, I ask the agent to write or update tests before implementation. When practical, I have it confirm that the new test fails against the old behavior. The test should express the expected behavior; implementation should not weaken the test just to get a pass.</p>
+<p>Some general testing principles I use:</p>
+<ul>
+<li>Cover edge cases such as empty or invalid input, retries, errors, boundary values, and backward compatibility.</li>
+<li>For web applications, verify important user flows end to end as well as testing individual functions. Unit tests alone cannot show that the complete feature works from a user&#x27;s perspective.</li>
+<li>After implementation, run the checks that match the change and review their output.</li>
+</ul>
+<p>In a conversation with an Anthropic engineer, I heard a TDD workflow I found useful: write the test first, confirm it fails, commit that test as a checkpoint, then implement without changing the test just to force it to pass. That was advice from a conversation, not a claim about an official Anthropic workflow.</p>
+<p>Anthropic&#x27;s <a href="https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents">agent evaluation guide</a> also describes browser-based tasks that check page state and, when a task changes data, verify the resulting backend state. That is a good reminder for me to test the user&#x27;s actual journey, not only whether the code or page renders.</p>
+<h2>6. Load skills for repeatable workflows</h2>
+<p>An <code>AGENTS.md</code> file can hold short, lasting rules for a repository. For example:</p>
+<ol>
+<li>Use the package manager selected for this repository and keep its lockfile consistent.</li>
+<li>Run lint, type checks, and relevant tests before calling a change complete.</li>
+<li>Do not change public APIs without an approved plan.</li>
+<li>Keep pull requests focused and avoid unrelated refactors.</li>
+</ol>
+<p>For a workflow I repeat, I use a skill: instructions, scripts, and references for tasks such as preparing a migration or reviewing an authentication change. This keeps a general repository guide from turning into one huge document with every company rule and architecture detail.</p>
+<h2>7. Implement one scoped change</h2>
+<p>Once the plan is approved, I ask the implementation agent to make only that change, keep it localized, and run the relevant checks. If it finds a design problem or needs to expand the scope, it should stop and explain why before proceeding.</p>
+<p>I also match the model to the task:</p>
+<ol>
+<li>Use a stronger reasoning model for planning, architecture, difficult debugging, or security work.</li>
+<li>Use a mid-tier model to implement an approved plan.</li>
+<li>Use a lighter model or subagent for summaries, log compression, documentation, and other narrow, routine tasks.</li>
+</ol>
+<p>My seniors and peers have also suggested using lighter models and subagents for small, well-defined work.</p>
+<h2>8. Make verification part of the task</h2>
+<p>Before review, I ask the agent to build an evidence stack that fits the change. It can include formatting, linting, type checks, focused unit tests, integration or API tests, migration validation, and browser or end-to-end checks for user-facing behavior.</p>
+<p>I ask it to report each command, its result, and relevant output. If a check did not run, it should say which one and why.</p>
+<h2>9. Review the Git diff, not just the agent&#x27;s explanation</h2>
+<p>I inspect the diff and repository state directly:</p>
+<pre><code class="language-sh">git diff --check
+git diff --stat
+git diff -- path/to/affected/files
+git status --short
+</code></pre>
+<p>For another perspective, I ask a fresh review agent to compare the diff with the accepted task contract. I want it to identify concrete correctness issues, missed edge cases, compatibility or security risks, test gaps, and changes outside the agreed scope.</p>
+<p>I also read Spotify Engineering&#x27;s <a href="https://engineering.atspotify.com/2025/12/feedback-loops-background-coding-agents-part-3">article about feedback loops for background coding agents</a>. It describes a judge that compares a proposed diff with the original prompt after deterministic verifiers run, including to catch changes outside the prompt&#x27;s scope. Spotify also notes that it had not yet invested in formal evaluations for that judge, so I treat it as another review signal rather than a substitute for tests or human review.</p>
+<h2>10. Commit a checkpoint and prepare a proof-based pull request</h2>
+<p>After checks and review, I make a focused commit with a descriptive message, such as:</p>
+<pre><code class="language-sh">git add -- path/to/affected/files
+git commit -m &quot;fix: prevent duplicate contacts on sync retries&quot;
+</code></pre>
+<p>A pull request should explain what changed and why, what stayed out of scope, how the change was tested, what risks remain, and how to roll it back if needed. A clear handoff makes it easier for someone else to review the evidence and recover the work.</p>
+<h2>11. Leave the final decision to a human</h2>
+<p>The assigned human reviewer decides whether to merge after reading the evidence and validating the change. If an agent repeats the same mistake, I would rather address the cause with a test, a narrow repository rule, a better skill, or a verification check than just tell it to be more careful.</p>
+<p>This is how I currently think about AI pair programming: I learn from people building with these tools, then adapt those ideas to my own workflow. This is what works for me today, and I expect it to keep changing as I learn more.</p></div><p class="entry-topics"><span>Topics</span> LLMs, AI agents, software engineering</p></article></main><footer class="journal-footer"><a href="/blog/">Back to blog</a><a href="mailto:prathamvk27@gmail.com">Email</a></footer></div></div>
+  </body>
+</html>

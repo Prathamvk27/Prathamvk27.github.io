@@ -6,6 +6,13 @@
     <description>Notes on building AI services, model infrastructure, and reliable software.</description>
     <language>en-us</language>
     <item>
+      <title>My LLM and Agentic Workflow, Part 2</title>
+      <link>https://prathamvk27.github.io/blog/my-llm-and-agentic-workflow-part-2/</link>
+      <guid isPermaLink="true">https://prathamvk27.github.io/blog/my-llm-and-agentic-workflow-part-2/</guid>
+      <pubDate>Mon, 05 Oct 2026 00:00:00 GMT</pubDate>
+      <description>How I turn an agent plan into tests, keep implementation scoped, and review the result.</description>
+    </item>
+    <item>
       <title>My LLM and Agentic Workflow, Part 1</title>
       <link>https://prathamvk27.github.io/blog/my-llm-and-agentic-workflow-part-1/</link>
       <guid isPermaLink="true">https://prathamvk27.github.io/blog/my-llm-and-agentic-workflow-part-1/</guid>
