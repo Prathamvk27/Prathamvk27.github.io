@@ -17,41 +17,72 @@ export const workExperience = [
     date: "August 2026 - Present",
     company: "Automation Interns",
     role: "Forward Deployed Engineer",
+    highlights: [
+      "Turned a real estate client's broker processes into buyer and seller workflows.",
+      "Built a FastAPI reporting app that combines Salesforce property data and client inputs so brokers can prepare reports during meetings.",
+      "Normalized Pipedrive records and handled inconsistent data and failed requests across the integrations.",
+    ],
   },
   {
+    date: "2026 - Present",
     company: "Solute Labs",
     role: "Founding Engineer",
     url: "https://prathamvk27.github.io/solute-labs/",
+    highlights: [
+      "Built Python and FastAPI endpoints for text generation and classification, with validated request and response contracts.",
+      "Added provider retries, model release checks, rollback, and inference monitoring to make local AI services more reliable.",
+      "Parallelized embedding generation with Ray on a Kind/KubeRay cluster.",
+    ],
   },
   {
     date: "August 2025 - July 2026",
     company: "EPICS at ASU",
     platform: "Internpro.ai",
     role: "Engineering Volunteer, AI Infrastructure",
+    highlights: [
+      "Built shared FastAPI model-serving APIs and moved document processing to Celery workers backed by Redis, PostgreSQL, and S3.",
+      "Connected ROS 2 perception and motion control to robot arms, using Gazebo and MoveIt 2 to develop and test planned movements before hardware evaluation.",
+    ],
   },
   {
     date: "February 2023 - August 2023",
     company: "Ness Digital Engineering",
     role: "Software Engineer",
+    highlights: [
+      "Built Java and Spring Boot APIs for financial workflows, including database access and OAuth2 authentication.",
+      "Reproduced API and database integration defects, corrected field mappings, and added JUnit and Postman regression coverage.",
+    ],
   },
 ]
 
 export const skillGroups = [
   {
     label: "Backend",
-    items: "Python, SQL, FastAPI, Django, REST APIs, PostgreSQL, Redis, Celery, Linux",
+    items: "Python, Java, SQL, FastAPI, Django, Spring Boot, Spring Data JPA, Pydantic, REST APIs, PostgreSQL, Redis, Celery, Linux",
   },
   {
     label: "AI and inference",
-    items: "PyTorch, Hugging Face Transformers, vLLM, ONNX Runtime, MLflow, model evaluation, inference benchmarking",
+    items: "PyTorch, Hugging Face Transformers, vLLM, ONNX Runtime, MLflow, OpenAI, Groq, Gemma, model evaluation, inference benchmarking",
   },
   {
     label: "Cloud and infrastructure",
-    items: "AWS, GCP, Docker, Kubernetes, Terraform",
+    items: "AWS, GCP, Docker, Kubernetes, Kind, KubeRay, Ray, Terraform",
+  },
+  {
+    label: "Robotics",
+    items: "ROS 2, Gazebo, MoveIt 2, Universal Robots, myCobot",
+  },
+  {
+    label: "Testing and API documentation",
+    items: "pytest, Ruff, mypy, JUnit, Postman, Swagger",
   },
   {
     label: "Delivery and observability",
-    items: "Jenkins, GitHub Actions, Prometheus, Git, CI/CD, load testing, structured logging, health checks, rollback workflows",
+    items: "Jenkins, GitHub Actions, OpenTelemetry, Prometheus, Grafana, Git, CI/CD, load testing, structured logging, health checks, rollback workflows",
+  },
+  {
+    label: "Client integrations",
+    items: "Salesforce, Pipedrive",
   },
 ]
 

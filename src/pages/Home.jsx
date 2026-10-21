@@ -48,6 +48,9 @@ export const Home = () => (
                 {item.platform ? ` · ${item.platform} platform` : ""}
                 {item.date ? ` · ${item.date}` : ""}
               </p>
+              <ul>
+                {item.highlights.map((highlight) => <li key={highlight}>{highlight}</li>)}
+              </ul>
             </article>
           ))}
         </div>

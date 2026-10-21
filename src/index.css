@@ -119,6 +119,8 @@ a:focus-visible, summary:focus-visible {
 .education-list h3 { font-weight: 500; }
 .experience-list p,
 .education-list p { margin: 0.2rem 0 0; }
+.experience-list ul { margin: 0.55rem 0 0; padding-left: 1.35rem; }
+.experience-list li + li { margin-top: 0.35rem; }
 .entry-list { margin-top: 1.5rem; }
 .journal-entry + .journal-entry { margin-top: 1.75rem; }
 .journal-entry h3 { line-height: 1.6; }
