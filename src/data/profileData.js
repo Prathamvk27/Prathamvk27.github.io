@@ -24,10 +24,9 @@ export const workExperience = [
     ],
   },
   {
-    date: "2026 - Present",
-    company: "Solute Labs",
+    date: "January 2, 2026 - Present",
+    company: "Stealth Startup",
     role: "Founding Engineer",
-    url: "https://prathamvk27.github.io/solute-labs/",
     highlights: [
       "Built Python and FastAPI endpoints for text generation and classification, with validated request and response contracts.",
       "Added provider retries, model release checks, rollback, and inference monitoring to make local AI services more reliable.",
@@ -38,7 +37,7 @@ export const workExperience = [
     date: "August 2025 - July 2026",
     company: "EPICS at ASU",
     platform: "Internpro.ai",
-    role: "Engineering Volunteer, AI Infrastructure",
+    role: "Research Volunteer, AI Infrastructure",
     highlights: [
       "Built shared FastAPI model-serving APIs and moved document processing to Celery workers backed by Redis, PostgreSQL, and S3.",
       "Connected ROS 2 perception and motion control to robot arms, using Gazebo and MoveIt 2 to develop and test planned movements before hardware evaluation.",

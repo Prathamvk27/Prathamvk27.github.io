@@ -13,20 +13,6 @@ export const Home = () => (
       <div className="masthead__links">
         <a href="/blog/">Blog</a>
       </div>
-      <section className="featured-work" aria-labelledby="featured-work-title">
-        <p className="featured-work__label">Current work</p>
-        <h2 id="featured-work-title">
-          <a href="https://prathamvk27.github.io/solute-labs/">Solute Labs</a>
-        </h2>
-        <p className="featured-work__role">Founding engineer · AI engineering</p>
-        <p>
-          Our first product, GodSend, helps people draft thoughtful job outreach from their own
-          experience. Every message stays reviewable before sending.
-        </p>
-        <a className="featured-work__action" href="https://prathamvk27.github.io/email_automation/">
-          Try GodSend ↗
-        </a>
-      </section>
       <nav className="page-index" aria-label="Page index">
         <span>Index</span>
         <a href="#experience">Experience</a>
